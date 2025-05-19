@@ -63,9 +63,6 @@ const sessionOptions = {
     },
 };
 
-// app.get("/", (req,res) => {
-//     res.send("Hi, I am root");
-// });
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -83,32 +80,10 @@ app.use((req, res, next) => {
     res.locals.currUser = req.user; 
     next();
 });
-// app.get("/demouser", async (req, res) => {
-//     let fakeUser = new User ({
-//         email: "student@gmail.com",
-//         username: "delta-student"
-//     });
-
-//    let registerUser = await User.register(fakeUser, "helloworld");
-//    res.send(registerUser);
-// });
 
 app.use("/listings", listingsRouter);  
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
-
-
-// app.get("/testListing", async(req, res) => {
-//     let sampleListing = new Listing({
-//         title: "My New Villa",
-//         descriptions: "By the beach",
-//         location: "Calangute, Goa",
-//         country: "India",
-//     });
-//     await sampleListing.save();
-//     console.log("sample was save");
-//     res.send("successful testing");
-// });
 
 app.all("*", (req,res, next) => {
     next(new ExpressError(404, "Page Not Found"));
@@ -125,24 +100,3 @@ app.use((err, req, res, next) => {
 app.listen(8080, () => {
     console.log("server is listening to port 8080");
 });
-
-
-
-
-
-  
-    
-   
-   
-   
-
-
-       
-    
-
-    
-
-
-
-
-
